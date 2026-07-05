@@ -1,4 +1,4 @@
-module github.com/coevin/tau-plugins/sdd
+module github.com/taucentral/sdd
 
 go 1.25.0
 

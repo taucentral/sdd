@@ -64,7 +64,7 @@ import (
 	"log"
 
 	tau "github.com/coevin/tau/pkg/tau"
-	sdd "github.com/coevin/tau-plugins/sdd"
+	sdd "github.com/taucentral/sdd"
 )
 
 func main() {
@@ -122,7 +122,7 @@ func main() {
 
 The snippet above is complete. Drop it into `main.go` in a module that
 `require`s both `github.com/coevin/tau` and
-`github.com/coevin/tau-plugins/sdd` and it will compile standalone.
+`github.com/taucentral/sdd` and it will compile standalone.
 
 Running the resulting binary requires `openspec/changes/my-change/tasks.md`
 to exist on disk (the `sdd.Orchestrator` constructor parses it at startup
