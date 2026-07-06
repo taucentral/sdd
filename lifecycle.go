@@ -24,7 +24,7 @@ import (
 	"strings"
 	"time"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // ActiveChangeRE matches a directory name under openspec/changes/.

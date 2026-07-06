@@ -2,15 +2,11 @@ module github.com/taucentral/sdd
 
 go 1.25.0
 
-// The require directive for github.com/coevin/tau points at the
-// published version consumed by /opsx:apply during the add-sdd-plugin
-// change. tau is consumed as a third-party Go module dependency; no
-// `replace` directive is used, matching the precedent set by
-// plugins/headroom/go.mod.
+// This plugin consumes tau as a third-party Go module dependency.
 
 require (
-	github.com/coevin/tau v0.0.0-20260630093552-20cd8babf934
 	github.com/invopop/jsonschema v0.14.0
+	github.com/taucentral/tau v0.0.0-20260706085245-48175c6bcdf0
 )
 
 require (

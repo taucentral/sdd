@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 func TestDecisionsObserver_PersistsExtractedMarkers(t *testing.T) {
@@ -27,7 +27,7 @@ func TestDecisionsObserver_PersistsExtractedMarkers(t *testing.T) {
 		tau.TextContent{Text: "some preamble\n**Decision 1**: pick adapter types\nmore text\nD2. split into three interfaces\n"},
 		tau.TextContent{Text: "Decision: use sentinel errors\n"},
 	}}
-	if err := obs.ObserveResponse(context.Background(), nil, resp); err != nil {
+	if err := obs.ObserveResponse(context.Background(), nil, resp, nil); err != nil {
 		t.Fatalf("ObserveResponse: %v", err)
 	}
 
@@ -74,7 +74,7 @@ func TestDecisionsObserver_NonAbortingOnStorePutFailure(t *testing.T) {
 	resp := &tau.Response{Content: []tau.ContentBlock{
 		tau.TextContent{Text: "**Decision 1**: still parses fine\n"},
 	}}
-	if err := obs.ObserveResponse(context.Background(), nil, resp); err != nil {
+	if err := obs.ObserveResponse(context.Background(), nil, resp, nil); err != nil {
 		t.Errorf("ObserveResponse: want nil for store failure, got %v", err)
 	}
 }
@@ -84,7 +84,7 @@ func TestDecisionsObserver_NonAbortingOnNilStore(t *testing.T) {
 	resp := &tau.Response{Content: []tau.ContentBlock{
 		tau.TextContent{Text: "**Decision 1**: nothing persists\n"},
 	}}
-	if err := obs.ObserveResponse(context.Background(), nil, resp); err != nil {
+	if err := obs.ObserveResponse(context.Background(), nil, resp, nil); err != nil {
 		t.Errorf("ObserveResponse: want nil for nil store, got %v", err)
 	}
 }
@@ -100,7 +100,7 @@ func TestDecisionsObserver_NoPanicOnMalformedContent(t *testing.T) {
 		tau.ImageContent{Data: "ZGF0YQ==", MimeType: "image/png"},
 		tau.TextContent{Text: "Decision: ok\n"},
 	}}
-	if err := obs.ObserveResponse(context.Background(), nil, resp); err != nil {
+	if err := obs.ObserveResponse(context.Background(), nil, resp, nil); err != nil {
 		t.Errorf("ObserveResponse: want nil, got %v", err)
 	}
 	entries, _ := store.Query(context.Background(), tau.Query{Limit: 100})
@@ -132,7 +132,7 @@ func TestDecisionsObserver_SyntheticPanicRecovered(t *testing.T) {
 	}}
 	systemBefore := req.System
 
-	if err := obs.ObserveResponse(context.Background(), req, resp); err != nil {
+	if err := obs.ObserveResponse(context.Background(), req, resp, nil); err != nil {
 		t.Errorf("ObserveResponse after panic: want nil, got %v", err)
 	}
 	if !panicked {
@@ -153,7 +153,7 @@ func TestDecisionsObserver_NilResponseIsSafe(t *testing.T) {
 	store := newMemStore()
 	t.Cleanup(func() { _ = store.Close() })
 	obs := NewDecisionsObserver(store, "")
-	if err := obs.ObserveResponse(context.Background(), nil, nil); err != nil {
+	if err := obs.ObserveResponse(context.Background(), nil, nil, nil); err != nil {
 		t.Errorf("ObserveResponse(nil resp): want nil, got %v", err)
 	}
 }
@@ -171,7 +171,7 @@ func TestDecisionsObserver_ConcurrentSafe(t *testing.T) {
 			resp := &tau.Response{Content: []tau.ContentBlock{
 				tau.TextContent{Text: "D1. concurrent call\n"},
 			}}
-			_ = obs.ObserveResponse(context.Background(), nil, resp)
+			_ = obs.ObserveResponse(context.Background(), nil, resp, nil)
 		}()
 	}
 	wg.Wait()

@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // newChangeRoot returns a temp directory structured like
@@ -251,7 +251,7 @@ type captureObserver struct {
 	lastSystem []tau.ContentBlock
 }
 
-func (c *captureObserver) ObserveResponse(ctx context.Context, req *tau.Request, resp *tau.Response) error {
+func (c *captureObserver) ObserveResponse(ctx context.Context, req *tau.Request, resp *tau.Response, streamErr error) error {
 	if ctx.Err() != nil {
 		return ctx.Err()
 	}

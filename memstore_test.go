@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 type memStore struct {

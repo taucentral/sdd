@@ -24,7 +24,7 @@ import (
 	"strings"
 	"sync"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // ErrTasksMissing is returned by NewSDDOrchestrator when the change

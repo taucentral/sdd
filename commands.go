@@ -19,7 +19,7 @@ import (
 	"errors"
 	"strings"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // ProposeCommand is the /propose slash command. It scaffolds a new

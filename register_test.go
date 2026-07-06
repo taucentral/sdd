@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"testing"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 func TestMiddleware_ZeroValueProducesEmpty(t *testing.T) {

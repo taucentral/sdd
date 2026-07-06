@@ -22,7 +22,7 @@ import (
 
 	"github.com/invopop/jsonschema"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // ValidateTool is the `validate_change` HeadlessTool. It is stateless

@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // writeChange builds a minimal openspec/changes/<name>/ layout with the

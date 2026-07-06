@@ -13,7 +13,7 @@ import (
 	"strings"
 	"testing"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 func TestParsePhases_ThreeSectionsInOrder(t *testing.T) {

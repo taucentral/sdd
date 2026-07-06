@@ -22,7 +22,7 @@ import (
 	"sync"
 	"time"
 
-	tau "github.com/coevin/tau/pkg/tau"
+	tau "github.com/taucentral/tau/pkg/tau"
 )
 
 // DecisionsObserver is a ResponseObserver that scans each completed
@@ -61,7 +61,7 @@ func NewDecisionsObserver(store tau.Store, tagSubsystem string) *DecisionsObserv
 // non-aborting: any store.Put failure or scan panic is recovered and
 // logged (effectively dropped). Returns ctx.Err() when the context is
 // cancelled; otherwise nil.
-func (o *DecisionsObserver) ObserveResponse(ctx context.Context, req *tau.Request, resp *tau.Response) error {
+func (o *DecisionsObserver) ObserveResponse(ctx context.Context, req *tau.Request, resp *tau.Response, streamErr error) error {
 	if ctx.Err() != nil {
 		return ctx.Err()
 	}
